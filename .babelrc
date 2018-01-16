@@ -1,0 +1,12 @@
+{
+  "presets": [
+    "es2015",
+    "stage-0"
+  ],
+  "plugins": [
+    "transform-runtime",
+    "transform-decorators-legacy",
+    "external-helpers",
+    "add-module-exports"
+  ]
+}

@@ -1,0 +1,42 @@
+{
+  "name": "kaitlyn-cli",
+  "version": "1.0.0",
+  "description": "common web develop tools",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/likai757/kaitlyn-cli.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/likai757/kaitlyn-cli/issues"
+  },
+  "homepage": "https://github.com/likai757/kaitlyn-cli#readme",
+  "main": "lib/index.js",
+  "bin": {
+    "kaitlyn": "./bin/kaitlyn"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.24.1",
+    "babel-jest": "^20.0.3",
+    "babel-plugin-add-module-exports": "^0.2.1",
+    "babel-plugin-external-helpers": "^6.22.0",
+    "babel-plugin-transform-decorators-legacy": "^1.3.4",
+    "babel-plugin-transform-runtime": "^6.23.0",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-stage-0": "^6.24.1",
+    "documentation": "^5.3.5",
+    "jest": "^21.2.1"
+  },
+  "dependencies": {
+    "shelljs": "^0.8.0",
+    "yargs": "^10.1.1"
+  },
+  "scripts": {
+    "test": "jest",
+    "build": "mkdir -p lib && babel ./src -d ./lib",
+    "doc": "documentation build src/** -f html -o docs && open ./docs/index.html",
+    "publish2npm": "mkdir -p build && cp -R package.json README.md lib build && npm publish ./build"
+  }
+}
