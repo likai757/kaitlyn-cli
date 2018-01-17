@@ -6,11 +6,10 @@ const whitelist = [
   'lib/*',
   'style/*',
   'package.json',
-  'package-lock.json',
   'README.md',
 ]
 
-const name = require('../../package.json').name
+const name = require(path.join(process.cwd(), 'package.json')).name
 
 export default function (toPath) {
 
@@ -36,7 +35,7 @@ export default function (toPath) {
       shelljs.mkdir(output)
     }
 
-    const source = path.join(__dirname, '../..', n)
+    const source = path.join(process.cwd(), n)
     shelljs.cp('-rf', source, output)
     console.log('cp done', output)
   })
