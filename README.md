@@ -1,4 +1,4 @@
-# kailyn-cli 
+# kaitlyn-cli 
 
 [![Build Status](https://travis-ci.org/likai757/kaitlyn-cli.svg?branch=master)](https://travis-ci.org/likai757/kaitlyn-cli.svg?branch=master)
 
