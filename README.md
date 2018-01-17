@@ -5,10 +5,14 @@
 通过`copy`命令行工具将当前项目动态安装到，指定项目的`node_modules`目录下。
 
 ## Install
-`$npm i -g kaitlyn-cli`
+```bash
+npm i -g kaitlyn-cli
+```
 
 ## Uesage
-`$kaitlyn copy -p [target project path]`
+```bash
+kaitlyn copy -p [target project path]
+```
 
 ## Support Directory
 ```javascript
