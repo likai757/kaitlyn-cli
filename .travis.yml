@@ -8,7 +8,7 @@ before_install:
 install:
 - npm install
 script:
-- npm test && npm run build && npm run publish2npm
+- npm run publish2npm
 branches:
   only:
   - /^v?\d+(\.\d+)+[\.\-_\w]*/
