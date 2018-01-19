@@ -14,12 +14,28 @@ npm i -g kaitlyn-cli
 kaitlyn copy -p [target project path]
 ```
 
-## Support Directory
-```javascript
-const whiteList = [
-  'lib/*',
-  'style/*',
-  'package.json',
-  'README.md',
-] 
+## Default Configuration
+```json
+{
+  "commands": [
+    "rm -rf build",
+    "npm run build"
+  ],
+  "source": "build/*"
+}
 ```
+
+## Configuration
+Add `.kaitlynrc.json` file to root path
+```json
+{
+  "commands": [
+    "rm -rf build",
+    "npm run build"
+  ],
+  "source": "build/*"
+}
+```
+ - commands: build script commands
+ - source: output directory of build result
+

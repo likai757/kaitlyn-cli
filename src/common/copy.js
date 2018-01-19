@@ -2,41 +2,57 @@ const shelljs = require('shelljs')
 const path = require('path')
 const fs = require('fs')
 
-const whitelist = [
-  'lib/*',
-  'style/*',
-  'package.json',
-  'README.md',
-]
-
+// const defSource = 'build/*'
 const name = require(path.join(process.cwd(), 'package.json')).name
 
-export default function (toPath) {
+function exeCopyDirectories(source, target) {
+  let src = path.join(process.cwd(), source)
+  let output = `${target}/node_modules/${name}`
 
-  console.log('exec >> npm run build \n')
-  shelljs.exec('rm -rf lib')
-  shelljs.exec('npm run build')
-  console.log('\n')
+  //install module to node_modules
+  if (!fs.existsSync(output)) {
+    shelljs.mkdir(output)
+  }
 
-  whitelist.forEach(n => {
-    let m = n
-    let modulePath = `${toPath}/node_modules/${name}`
-    let output = `${modulePath}/${m}`
+  shelljs.cp('-rf', src, output)
 
-    //install module to node_modules
-    if (!fs.existsSync(modulePath)) {
-      shelljs.mkdir(modulePath)
-    }
+  console.log('cp done!')
+  console.log('\t from src: ', src)
+  console.log('\t to target: ', output)
+}
 
-    if (n.endsWith('/*')) {
-      m = m.slice(0, m.length - 2)
-      output = `${toPath}/node_modules/${name}/${m}`
-      shelljs.rm('-rf', output)
-      shelljs.mkdir(output)
-    }
+function exeCommands(commands) {
+  if (Array.isArray(commands)) {
+    commands.forEach(cmd => {
+      console.log(`exec >> ${cmd}`)
+      shelljs.exec(cmd)
+    })
+    return
+  }
+  if (commands === 'default') {
+    console.log('exec >> npm run build \n')
+    shelljs.exec('rm -rf build')
+    shelljs.exec('npm run build')
+    console.log('\n')
+    return
+  }
+}
 
-    const source = path.join(process.cwd(), n)
-    shelljs.cp('-rf', source, output)
-    console.log('cp done', output)
-  })
+export default function (target) {
+
+  let configFilePath = path.join(process.cwd(), '.kaitlynrc.json')
+  if (!fs.existsSync(configFilePath)) {
+    configFilePath = path.join(__dirname, '../../asset', '.kaitlynrc.json')
+  }
+
+  console.log('loading ' + configFilePath)
+
+  let kaitlynrc = require(configFilePath)
+  let { commands = 'none', source = [] } = kaitlynrc
+
+  console.log(`\t config.command: ${commands}`)
+  console.log(`\t config.source: ${source} \n`)
+
+  exeCommands(commands)
+  exeCopyDirectories(source, target)
 }

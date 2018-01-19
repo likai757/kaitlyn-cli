@@ -1,0 +1,7 @@
+{
+  "commands": [
+    "rm -rf build",
+    "npm run build"
+  ],
+  "source": "build/*"
+}
