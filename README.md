@@ -15,7 +15,7 @@ kaitlyn copy -p [target project path]
 ```
 
 ## Default Configuration
-```json
+```javascript
 {
   "commands": [
     "rm -rf build",
@@ -27,7 +27,7 @@ kaitlyn copy -p [target project path]
 
 ## Configuration
 Add `.kaitlynrc.json` file to root path
-```json
+```javascript
 {
   "commands": [
     "rm -rf build",
